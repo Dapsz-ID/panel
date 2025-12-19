@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:title" content="Panel Pterodactyl - Vyncore">
+  <meta property="og:description" content="Panel Pterodactyl">
+  <meta property="og:image" content="images.png">
+  <meta property="og:url" content="panel.vyncore.my.id">
+  <meta property="og:type" content="website">
+<title>Vyncore Panel</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', system-ui;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background:
+    radial-gradient(circle at top, #3a1c71 0%, #12001f 40%, #000 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* LOGIN CARD */
+.login-box {
+  width: 340px;
+  padding: 35px;
+  background: rgba(30, 0, 60, 0.45);
+  backdrop-filter: blur(18px);
+  border-radius: 18px;
+  border: 1px solid rgba(180, 120, 255, 0.2);
+  box-shadow:
+    0 0 40px rgba(180, 120, 255, 0.15),
+    inset 0 0 20px rgba(180, 120, 255, 0.05);
+  color: #eee;
+  text-align: center;
+  animation: fadeZoom 1s ease;
+}
+
+.login-box h2 {
+  margin-bottom: 25px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #d8b4ff;
+  text-shadow: 0 0 10px rgba(200,120,255,0.6);
+}
+
+.login-box input {
+  width: 100%;
+  padding: 13px;
+  margin: 12px 0;
+  border-radius: 12px;
+  border: 1px solid rgba(200,120,255,0.25);
+  outline: none;
+  background: rgba(0,0,0,0.35);
+  color: #f5eaff;
+}
+
+.login-box input::placeholder {
+  color: #bba4d6;
+}
+
+.login-box input:focus {
+  border-color: #c084fc;
+  box-shadow: 0 0 12px rgba(192,132,252,0.6);
+}
+
+.login-box button {
+  width: 100%;
+  padding: 13px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #7c3aed, #c084fc);
+  color: #12001f;
+  font-weight: bold;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  box-shadow: 0 0 20px rgba(192,132,252,0.6);
+  transition: 0.3s ease;
+}
+
+.login-box button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 30px rgba(192,132,252,0.9);
+}
+
+#error {
+  margin-top: 12px;
+  color: #ff8fb1;
+  font-size: 14px;
+}
+
+/* VIDEO FULLSCREEN */
+#videoContainer {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: black;
+  z-index: 9999;
+}
+
+#videoContainer video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ANIMASI */
+@keyframes fadeZoom {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="login-box" id="loginBox">
+  <h2>Vyncore Panel</h2>
+  <input type="text" id="username" placeholder="Username">
+  <input type="password" id="password" placeholder="Password">
+  <button onclick="login()">LOGIN</button>
+  <div id="error"></div>
+</div>
+
+<div id="videoContainer">
+  <video id="video" autoplay muted playsinline>
+    <source src="test.mp4" type="video/mp4">
+  </video>
+</div>
+
+<script>
+function login() {
+  const user = document.getElementById("username").value;
+  const pass = document.getElementById("password").value;
+
+  if (user === "Vyncore" && pass === "SpecialJumat121") {
+    document.getElementById("loginBox").style.display = "none";
+
+    const vc = document.getElementById("videoContainer");
+    const video = document.getElementById("video");
+    vc.style.display = "block";
+
+    video.muted = false;
+    video.play();
+
+    if (vc.requestFullscreen) vc.requestFullscreen();
+    else if (vc.webkitRequestFullscreen) vc.webkitRequestFullscreen();
+    else if (vc.msRequestFullscreen) vc.msRequestFullscreen();
+  } else {
+    document.getElementById("error").innerText = "Password Atau Username Salah";
+  }
+}
+</script>
+
+</body>
+</html>
